@@ -2,8 +2,6 @@ import sys, os, re
 sys.path.append(os.path.abspath('.'))
 from util import read_input_lines, read_test_lines
 
-# Does not work!
-
 translate_table = {
     "one": "1",
     "two": "2",
@@ -24,10 +22,9 @@ def to_num(s: str) -> int:
 result = 0
 lines = read_input_lines("1")
 for line in lines:
-    finds = re.findall("[1-9]|one|two|three|four|five|six|seven|eight|nine", line)
+    finds = re.findall(r"(?=([1-9]|one|two|three|four|five|six|seven|eight|nine))", line)
     first = finds[0]
     last = finds[-1]
-    print(first + last)
     result += int(to_num(first) + to_num(last))
 
-# print(result)
+print(result)
